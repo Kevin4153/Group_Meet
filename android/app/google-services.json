@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "381666927100",
+    "project_id": "group-meet-a703d",
+    "storage_bucket": "group-meet-a703d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:381666927100:android:c9fea466613b1b46a75279",
+        "android_client_info": {
+          "package_name": "com.kevin.group_meet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "381666927100-ojhnip6dbr36tjvra5h60ae8kca7hird.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDBDU_Pt5qKJORK3pVDSuH8TQRYrlBj48E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "381666927100-ojhnip6dbr36tjvra5h60ae8kca7hird.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
