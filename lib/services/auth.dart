@@ -27,7 +27,7 @@ class AuthService {
       User? user = result.user;
       return _userFromFirebaseUser(user!);
     } catch (e) {
-      print(e.toString());
+        print(e.toString());
       return null;
     }
   }
@@ -41,7 +41,7 @@ class AuthService {
       User? user = result.user;
       return _userFromFirebaseUser(user);
     } catch (e) {
-      print(e.toString());
+        print(e.toString());
       return null;
     }
   }
@@ -54,10 +54,10 @@ class AuthService {
       User? user = result.user;
 
       // create a new doc for the user with the uid
-      await DatabaseService(uid: user!.uid).updateUserData('new member', true);
+      await DatabaseService(uid: user!.uid).newUserData('new member', true, null);
       return _userFromFirebaseUser(user);
     } catch (e) {
-      print(e.toString());
+        print(e.toString());
       return null;
     }
   }
@@ -67,7 +67,7 @@ class AuthService {
     try {
       return await _auth.signOut();
     } catch (e) {
-      print(e.toString());
+        print(e.toString());
       return null;
     }
   }
