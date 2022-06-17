@@ -1,3 +1,4 @@
+import 'package:geolocator/geolocator.dart';
 import 'package:group_meet/models/user.dart';
 import 'package:group_meet/services/database.dart';
 import 'package:group_meet/shared/loading.dart';
@@ -17,7 +18,9 @@ class _SettingsFormState extends State<SettingsForm> {
 
   // form values
   String? _currentName;
-  bool? _showLocation;
+  bool _showLocation = true;
+  Position? _lastPosition = null;
+
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +36,6 @@ class _SettingsFormState extends State<SettingsForm> {
               key: _formKey,
               child: Column(
                 children: <Widget>[
-              
                   TextFormField(
                     initialValue: userData.name,
                     decoration: textInputDeocartion,
@@ -43,17 +45,27 @@ class _SettingsFormState extends State<SettingsForm> {
                   SizedBox(
                     height: 20.0,
                   ),
-                  Switch(
-                    value: userData.showLocation, 
-                    onChanged: (val) => setState(() => _showLocation = !_showLocation!)),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisSize: MainAxisSize.max,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text('Show Location'),
+                      Switch(
+                          value: _showLocation,
+                          onChanged: (val) => setState(() => _showLocation = !_showLocation)),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 20.0,
+                  ),
                   ElevatedButton(
                       style: raisedButtonStyle,
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
                           await DatabaseService(uid: user.uid).updateUserData(
                               _currentName ?? userData.name,
-                              _showLocation ?? userData.showLocation
-                              );
+                              _showLocation);
                           Navigator.pop(context);
                         }
                       },
