@@ -37,6 +37,7 @@ class _DispLocationState extends State<DispLocation> {
               _checkServiesPermission();
 
               _getCurrentLocation();
+
             },
           ),
         ],
@@ -68,9 +69,13 @@ class _DispLocationState extends State<DispLocation> {
       Placemark place = placemarks[0];
       print(placemarks);
       setState(() {
+        
         _currentAddress = "${place.locality}, ${place.postalCode}, ${place.country}";
+        
+        // need to an UID in DatabaseService paramater
+        // creats a new user everytime
         DatabaseService ds = new DatabaseService();
-        ds.updateUserLastLocation(_currentPosition!);
+        ds.updateUserLocation(place.street!);
       });
     } catch (e) {
       print(e);
