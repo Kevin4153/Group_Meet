@@ -11,7 +11,7 @@ var textInputDeocartion = InputDecoration(
 
 // make an elevated buttoin look like a raised button
 final ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
-  onPrimary: Colors.lightBlue[200],
+  onPrimary: Colors.white,
   primary: Colors.lightBlue[200],
   minimumSize: Size(88, 36),
   padding: EdgeInsets.symmetric(horizontal: 16),

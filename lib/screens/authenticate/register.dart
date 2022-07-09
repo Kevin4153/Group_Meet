@@ -1,6 +1,4 @@
-import 'package:geolocator_platform_interface/src/models/position.dart';
 import 'package:group_meet/services/auth.dart';
-import 'package:group_meet/services/location.dart';
 import 'package:group_meet/shared/constants.dart';
 import 'package:group_meet/shared/loading.dart';
 import 'package:flutter/material.dart';
@@ -8,14 +6,14 @@ import 'package:flutter/material.dart';
 class Register extends StatefulWidget {
   final Function toggleView;
 
-  Register({required this.toggleView});
+  Register({Key? key, required this.toggleView}) : super(key: key);
 
   @override
   State<Register> createState() => _RegisterState();
 }
 
 class _RegisterState extends State<Register> {
-  final Future<Position> ehh = determinePosition();
+
  
   final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();

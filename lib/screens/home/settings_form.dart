@@ -18,9 +18,8 @@ class _SettingsFormState extends State<SettingsForm> {
 
   // form values
   String? _currentName;
-  bool _showLocation = true;
+  bool? _showLocation;
   Position? _lastPosition = null;
-
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +30,7 @@ class _SettingsFormState extends State<SettingsForm> {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             UserData userData = snapshot.data!;
-
+            _showLocation ??= userData.showLocation;
             return Form(
               key: _formKey,
               child: Column(
@@ -52,8 +51,8 @@ class _SettingsFormState extends State<SettingsForm> {
                     children: [
                       Text('Show Location'),
                       Switch(
-                          value: _showLocation,
-                          onChanged: (val) => setState(() => _showLocation = !_showLocation)),
+                          value: _showLocation!,
+                          onChanged: (val) => setState(() => _showLocation = !_showLocation!)),
                     ],
                   ),
                   SizedBox(
@@ -64,8 +63,7 @@ class _SettingsFormState extends State<SettingsForm> {
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
                           await DatabaseService(uid: user.uid).updateUserData(
-                              _currentName ?? userData.name,
-                              _showLocation);
+                              _currentName ?? userData.name, _showLocation!, userData.lastLocation);
                           Navigator.pop(context);
                         }
                       },
