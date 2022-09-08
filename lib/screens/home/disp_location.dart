@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
+
+import 'package:group_meet/screens/wrapper.dart';
 import 'package:group_meet/services/database.dart';
 import 'package:group_meet/shared/constants.dart';
 
@@ -38,7 +40,15 @@ class _DispLocationState extends State<DispLocation> {
                   onPressed: () {
                     print(_currentAddress);
 
-                    _checkServiesPermission();
+                    try {
+                      _checkServiesPermission();
+                    } catch(e) {
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(builder: (context) => Wrapper()),
+                        (Route<dynamic> route) => false,
+                      );
+                    }
 
                     _getCurrentLocation();
                   },
